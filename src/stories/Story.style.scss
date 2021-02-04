@@ -1,0 +1,14 @@
+.story {
+  display: flex;
+  justify-content: center;
+
+  & .countdown-timer {
+    font-family: Verdana, Calibri, serif !important;
+    font-size: 38px !important;
+
+    &__symbol {
+      font-size: 22px;
+      padding: 0 10px 0 5px;
+    }
+  }
+}
