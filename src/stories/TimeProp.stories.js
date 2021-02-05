@@ -1,6 +1,6 @@
 import React from 'react';
-import {number} from '@storybook/addon-knobs';
 import CountdownTimer from '../index';
+// import {number} from '@storybook/addon-knobs';
 // import {action} from '@storybook/addon-actions';
 
 export default {
@@ -12,9 +12,9 @@ export default {
   // decorators: [story => <div className={styles.center}>{story()}</div>]
 }
 
-export const Hours = () => <CountdownTimer time={number('Time', 3770)}/>;
-export const Minutes = () => <CountdownTimer time={number('Time', 160)}/>;
-export const Seconds = () => <CountdownTimer time={number('Time', 20)}/>;
+export const hours = () => <CountdownTimer time={3770}/>;
+export const minute = () => <CountdownTimer time={160}/>;
+export const second = () => <CountdownTimer time={20}/>;
 
 // const Template = (args) => <CountdownTimer {...args} />
 
@@ -36,6 +36,6 @@ export const Seconds = () => <CountdownTimer time={number('Time', 20)}/>;
 // }
 
 
-Hours.storyName = "Countdown with Hours"
-Minutes.storyName = "Countdown with Minutes"
-Seconds.storyName = "Countdown with Seconds"
+// Hours.storyName = "Hours"
+// Minutes.storyName = "Minute"
+// Seconds.storyName = "Second"

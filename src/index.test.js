@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import CountdownTimer from '.'
 
-describe('ExampleComponent', () => {
+describe('CountdownTimerComponent', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(CountdownTimer).toBeTruthy()
   })
 })

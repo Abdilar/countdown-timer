@@ -31,3 +31,11 @@ export function getZeroFormat(number) {
 export function getLastIndex(array) {
   return Array.isArray(array) ? array.length - 1 : undefined;
 }
+
+/*
+* Get random number
+* @param {Number} number - A number that must be generated randomly
+* */
+export function randomNumber(number = 1) {
+  return Math.floor(Math.random() * number);
+}
