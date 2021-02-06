@@ -1,9 +1,9 @@
-import React, {useEffect, useRef} from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import useState from '../../hooks/setState.hook';
-import {TYPE} from '../../config/variables';
-import {getLastIndex, getTime, isFunction, randomNumber} from '../../helper/utils';
-import {Symbol, Time} from '../'
+import { TYPE } from '../../config/variables';
+import { getLastIndex, getTime, isFunction, randomNumber } from '../../helper/utils';
+import { Symbol, Time } from '../';
 
 import './CountdownTimer.style.scss';
 
@@ -42,7 +42,7 @@ const CountdownTimer = (props) => {
   };
 
   const initialTimer = () => {
-    const {hours, minutes, seconds} = getTime(props.time - 1);
+    const { hours, minutes, seconds } = getTime(props.time - 1);
 
     setSeconds(seconds);
     setMinutes(minutes);
@@ -72,14 +72,17 @@ const CountdownTimer = (props) => {
   };
 
   const allocateSymbol = () => {
-    let data = props.format.toLowerCase().split(TYPE.HOURS);
-    const hours = data.length !== 1 ? data[0] : "";
-    data = data[getLastIndex(data)].split(TYPE.MINUTES);
-    const minutes = data.length !== 1 ? data[0] : "";
-    data = data[getLastIndex(data)].split(TYPE.SECONDS);
-    const seconds = data.length !== 1 ? data[0] : "";
+    const isLowerCaseHours = props.format.includes(TYPE.HOURS);
+    let data = props.format.split(isLowerCaseHours ? TYPE.HOURS : TYPE.HOURS.toUpperCase())
+    const hours = data.length !== 1 ? data[0] : '';
+    const isLowerCaseMinute = data[getLastIndex(data)].includes(TYPE.MINUTES);
+    data = data[getLastIndex(data)].split(isLowerCaseMinute ? TYPE.MINUTES : TYPE.MINUTES.toUpperCase());
+    const minutes = data.length !== 1 ? data[0] : '';
+    const isLowerCaseSecond = data[getLastIndex(data)].includes(TYPE.SECONDS);
+    data = data[getLastIndex(data)].split(isLowerCaseSecond ? TYPE.SECONDS : TYPE.SECONDS.toUpperCase());
+    const seconds = data.length !== 1 ? data[0] : '';
     const afterSeconds = data[getLastIndex(data)];
-    setSymbol({hours,minutes,seconds,afterSeconds});
+    setSymbol({ hours, minutes, seconds, afterSeconds });
   };
 
   return (
@@ -97,9 +100,9 @@ const CountdownTimer = (props) => {
 
 CountdownTimer.defaultProps = {
   className: {},
-  format: "HH:MM:SS",
-  id: `sakit-sa-countdown-timer-${randomNumber(10000)}`,
-};
+  format: 'HH:MM:SS',
+  id: `sakit-sa-countdown-timer-${randomNumber(10000)}`
+}
 
 CountdownTimer.propTypes = {
   className: PropTypes.object,
@@ -107,6 +110,6 @@ CountdownTimer.propTypes = {
   id: PropTypes.string,
   onComplete: PropTypes.func,
   time: PropTypes.number.isRequired
-};
+}
 
 export default CountdownTimer;
