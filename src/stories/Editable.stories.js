@@ -7,4 +7,4 @@ export default {
   component: CountdownTimer
 }
 
-export const example = () => <CountdownTimer id={text('ID', 'unique-id')} time={number('Timer', 8004)} format={text('Format', '[HH]:[MM]:[SS]')}/>
+export const example = () => <CountdownTimer id={text('ID', 'unique-id')} time={number('Time', 8004)} format={text('Format', '[HH]:[MM]:[SS]')}/>
