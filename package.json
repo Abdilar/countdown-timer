@@ -1,6 +1,6 @@
 {
   "name": "@sakit-sa/countdown-timer",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "This is a countdown-timer library for React",
   "author": "Saeed Abdilar",
   "license": "MIT",
@@ -23,7 +23,7 @@
     "test:watch": "react-scripts test --env=jsdom",
     "predeploy": "npm run build-storybook",
     "deploy-storybook": "npm run predeploy && npm run deploy:storybook",
-    "deploy:storybook":  "gh-pages -d storybook-static",
+    "deploy:storybook": "gh-pages -d storybook-static",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -73,6 +73,12 @@
     "prop-types": "^15.7.2"
   },
   "keywords": [
-    "sakit-sa", "countdown-timer", "countdown", "timer", "react", "javascript", "component"
+    "sakit-sa",
+    "countdown-timer",
+    "countdown",
+    "timer",
+    "react",
+    "javascript",
+    "component"
   ]
 }
