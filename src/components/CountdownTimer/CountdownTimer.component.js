@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import useState from '../../hooks/setState.hook';
 import { TYPE } from '../../config/variables';
-import { getLastIndex, getTime, isFunction, randomNumber } from '../../helper/utils';
+import { getTime, isFunction, randomNumber } from '../../helper/utils';
 import { Symbol, Time } from '../';
 
 import './CountdownTimer.style.scss';
@@ -12,10 +12,14 @@ const CountdownTimer = (props) => {
   const [minutes, setMinutes, getMinutes] = useState(0);
   const [seconds, setSeconds, getSeconds] = useState(0);
   const [symbol, setSymbol] = useState({});
+  const [types, setTypes] = useState([]);
   const intervalId = useRef(null);
   const {
     symbolClass = '',
-    wrapperClass = ''
+    wrapperClass = '',
+    hourWrapperClass = '',
+    minuteWrapperClass = '',
+    secondWrapperClass = ''
   } = props.className;
 
   useEffect(() => {
@@ -30,11 +34,13 @@ const CountdownTimer = (props) => {
 
   useEffect(() => {
     allocateSymbol();
+    allocateTime();
   }, [props.format]);
 
   const didMount = () => {
     initialTimer();
     allocateSymbol();
+    allocateTime();
   };
 
   const willUnmount = () => {
@@ -72,29 +78,73 @@ const CountdownTimer = (props) => {
   };
 
   const allocateSymbol = () => {
-    const isLowerCaseHours = props.format.includes(TYPE.HOURS);
-    let data = props.format.split(isLowerCaseHours ? TYPE.HOURS : TYPE.HOURS.toUpperCase())
-    const hours = data.length !== 1 ? data[0] : '';
-    const isLowerCaseMinute = data[getLastIndex(data)].includes(TYPE.MINUTES);
-    data = data[getLastIndex(data)].split(isLowerCaseMinute ? TYPE.MINUTES : TYPE.MINUTES.toUpperCase());
-    const minutes = data.length !== 1 ? data[0] : '';
-    const isLowerCaseSecond = data[getLastIndex(data)].includes(TYPE.SECONDS);
-    data = data[getLastIndex(data)].split(isLowerCaseSecond ? TYPE.SECONDS : TYPE.SECONDS.toUpperCase());
-    const seconds = data.length !== 1 ? data[0] : '';
-    const afterSeconds = data[getLastIndex(data)];
-    setSymbol({ hours, minutes, seconds, afterSeconds });
+    const splitChar = new RegExp(`${TYPE.SECONDS}|${TYPE.MINUTES}|${TYPE.HOURS}`);
+    const splitSymbols = props.format.toLowerCase().split(splitChar);
+
+    setSymbol({
+      firstSymbol: splitSymbols[0],
+      secondSymbol: splitSymbols[1],
+      thirdSymbol: splitSymbols[2],
+      forthSymbol: splitSymbols[3]
+    });
   };
 
+  const allocateTime = () => {
+    const format = props.format.toLowerCase();
+    const types = [];
+    let foundedIndex = -1;
+    props.format.toLowerCase().split('').forEach((character, index) => {
+      if (index === foundedIndex) return;
+      if(character === 'h') {
+        format[index + 1] === 'h' && (types.push(TYPE.HOURS));
+        foundedIndex = index + 1;
+      }
+      if (character === 'm') {
+        format[index + 1] === 'm' && (types.push(TYPE.MINUTES));
+        foundedIndex = index + 1;
+      }
+      if (character === 's') {
+        format[index + 1] === 's' && (types.push(TYPE.SECONDS));
+        foundedIndex = index + 1;
+      }
+    });
+    setTypes([...new Set(types)]);
+  };
+
+  const getNumber = (type) => {
+    return type === TYPE.HOURS ?
+      hours :
+      type === TYPE.MINUTES ?
+        minutes :
+        type === TYPE.SECONDS ?
+          seconds : 0;
+  }
+
+  const getWrapperClass = (type) => {
+    return type === TYPE.HOURS ?
+      hourWrapperClass :
+      type === TYPE.MINUTES ?
+        minuteWrapperClass :
+        type === TYPE.SECONDS ?
+          secondWrapperClass : '';
+  }
+
   return (
-    <div id={props.id} className={`countdown-timer ${wrapperClass}`}>
-      <Symbol symbol={symbol.hours} symbolClass={symbolClass} />
-      <Time type={TYPE.HOURS} number={hours} {...props} />
-      <Symbol symbol={symbol.minutes} symbolClass={symbolClass} />
-      <Time type={TYPE.MINUTES} number={minutes} {...props} />
-      <Symbol symbol={symbol.seconds} symbolClass={symbolClass} />
-      <Time type={TYPE.SECONDS} number={seconds} {...props} />
-      <Symbol symbol={symbol.afterSeconds} symbolClass={symbolClass} />
-    </div>
+    <span id={props.id} className={`countdown-timer ${wrapperClass}`}>
+      <Symbol symbol={symbol.firstSymbol} symbolClass={symbolClass} />
+      <span className={getWrapperClass(types[0])}>
+        <Time type={types[0]} number={getNumber(types[0])} {...props} />
+        <Symbol symbol={symbol.secondSymbol} symbolClass={symbolClass} />
+      </span>
+      <span className={getWrapperClass(types[1])}>
+        <Time type={types[1]} number={getNumber(types[1])} {...props} />
+        <Symbol symbol={symbol.thirdSymbol} symbolClass={symbolClass} />
+      </span>
+      <span className={getWrapperClass(types[2])}>
+        <Time type={types[2]} number={getNumber(types[2])} {...props} />
+        <Symbol symbol={symbol.forthSymbol} symbolClass={symbolClass} />
+      </span>
+    </span>
   )
 };
 
