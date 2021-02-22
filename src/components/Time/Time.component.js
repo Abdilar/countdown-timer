@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getZeroFormat, isEmptyString } from '../../helper/utils'
+import { getZeroFormat, isEmptyString } from '../../utils/functions'
 import { TYPE } from '../../config/variables'
 
 const Time = ({format, className, type, number}) => {

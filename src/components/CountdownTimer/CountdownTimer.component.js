@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import useState from '../../hooks/setState.hook';
 import { TYPE } from '../../config/variables';
-import { getTime, isFunction, randomNumber } from '../../helper/utils';
+import { getTime, isFunction, randomNumber } from '../../utils/functions';
 import { Symbol, Time } from '../';
 
 import './CountdownTimer.style.scss';

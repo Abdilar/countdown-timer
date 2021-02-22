@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { isEmptyString } from '../../helper/utils'
+import { isEmptyString } from '../../utils/functions'
 
 const Symbol = ({symbol, symbolClass}) => !isEmptyString(symbol) ? <span className={symbolClass}>{symbol}</span> : null;
 
