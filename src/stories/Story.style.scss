@@ -16,6 +16,7 @@
 .color-black {
   background-color: #222222;
   border-radius: 5px;
+  display: inline-flex;
   padding: 20px;
 }
 
@@ -37,4 +38,27 @@
 
 .color-orange {
   border-bottom: 4px solid #ff8d00;
+}
+
+.color-green {
+  border: 2px dashed #51693a;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 15px 10px;
+}
+
+
+.large-text {
+  font-size: 50px;
+}
+
+.digit-wrapper {
+  display: inline-flex;
+  flex-direction: column;
+  padding: 0 10px;
+  text-align: center;
+}
+
+.symbol {
+  font-size: 18px;
 }
