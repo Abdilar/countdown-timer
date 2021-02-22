@@ -13,10 +13,25 @@ export const className = () => {
     wrapperClass: "color-black",
     symbolClass: "color-white",
     digitClass: "color-yellow",
-    hoursClass: "color-red",
+    hourClass: "color-red",
     minuteClass: "color-blue",
     secondClass: "color-orange",
+    hourWrapperClass: "color-green",
+    minuteWrapperClass: "color-green",
+    secondWrapperClass: "color-green",
   };
 
   return <CountdownTimer className={customClass} time={40504} />
+}
+
+export const newStyle = () => {
+  const customClass = {
+    digitClass: "large-text",
+    symbolClass: "symbol",
+    hourWrapperClass: "digit-wrapper",
+    minuteWrapperClass: "digit-wrapper",
+    secondWrapperClass: "digit-wrapper",
+  };
+
+  return <CountdownTimer className={customClass} format="HHhoure MMminute SSsecond" time={40504} />
 }

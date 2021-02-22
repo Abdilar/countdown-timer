@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getZeroFormat } from '../../helper/utils'
+import { getZeroFormat, isEmptyString } from '../../utils/functions'
 import { TYPE } from '../../config/variables'
 
 const Time = ({format, className, type, number}) => {
-  if (!format.toLowerCase().includes(type)) return null;
-  const { digitClass = '', hoursClass = '', minuteClass = '', secondClass = '' } = className;
+  if (isEmptyString(type)) return null;
+  const { digitClass = '', hourClass = 'hour', minuteClass = '', secondClass = '' } = className;
   const customClass = type === TYPE.HOURS ?
-    hoursClass :
+    hourClass :
     type === TYPE.MINUTES ?
       minuteClass :
       type === TYPE.SECONDS ?
