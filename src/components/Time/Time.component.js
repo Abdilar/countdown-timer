@@ -5,9 +5,9 @@ import { TYPE } from '../../config/variables'
 
 const Time = ({format, className, type, number}) => {
   if (isEmptyString(type)) return null;
-  const { digitClass = '', hoursClass = 'hour', minuteClass = '', secondClass = '' } = className;
+  const { digitClass = '', hourClass = 'hour', minuteClass = '', secondClass = '' } = className;
   const customClass = type === TYPE.HOURS ?
-    hoursClass :
+    hourClass :
     type === TYPE.MINUTES ?
       minuteClass :
       type === TYPE.SECONDS ?
