@@ -108,7 +108,8 @@ const CountdownTimer = (props) => {
         foundedIndex = index + 1;
       }
     });
-    setTypes([...new Set(types)]);
+    const set = new Set(types);
+    setTypes([...Array.from(set)]);
   };
 
   const getNumber = (type) => {
