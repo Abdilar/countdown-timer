@@ -40,7 +40,7 @@ import CountdownTimer from '@sakit-sa/countdown-timer';
 ### Props
 Name | Type | Default | Description
 -----|------|-------|-----
-**id**|`string`|`sakit-sa-countdown-timer-[random-number]`|The unique identifier for the component.
+**id**|`string`|`countdown-timer-[random-number]`|The unique identifier for the component.
 **time**|`number`|`required`|The value of the timer base on second.
 **format**|`string`|`HH:MM:SS`|Formats a time value.
 **onComplete**|`function`|`-`|Trigger when timer is zero.

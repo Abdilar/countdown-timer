@@ -2,12 +2,13 @@ import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import useState from '../../hooks/setState.hook';
 import { TYPE } from '../../config/variables';
-import { getTime, isFunction, randomNumber } from '../../utils/functions';
+import { getTime, isEmptyString, isFunction, randomNumber } from '../../utils/functions'
 import { Symbol, Time } from '../';
 
 import './CountdownTimer.style.scss';
 
 const CountdownTimer = (props) => {
+  const [id, setId] = useState('countdown-timer');
   const [hours, setHours, getHours] = useState(0);
   const [minutes, setMinutes, getMinutes] = useState(0);
   const [seconds, setSeconds, getSeconds] = useState(0);
@@ -26,6 +27,11 @@ const CountdownTimer = (props) => {
     didMount();
     return willUnmount;
   }, []);
+
+  useEffect(() => {
+    const id = !isEmptyString(props.id) ? props.id : `countdown-timer-${randomNumber(10000)}`;
+    setId(id);
+  }, [props.id]);
 
   useEffect(() => {
     clearInterval(intervalId.current);
@@ -132,7 +138,7 @@ const CountdownTimer = (props) => {
   }
 
   return (
-    <span id={props.id} className={`countdown-timer ${wrapperClass}`}>
+    <span id={id} className={`countdown-timer ${wrapperClass}`}>
       <Symbol symbol={symbol.firstSymbol} symbolClass={symbolClass} />
       <span className={getWrapperClass(types[0])}>
         <Time type={types[0]} number={getNumber(types[0])} {...props} />
@@ -152,8 +158,7 @@ const CountdownTimer = (props) => {
 
 CountdownTimer.defaultProps = {
   className: {},
-  format: 'HH:MM:SS',
-  id: `sakit-sa-countdown-timer-${randomNumber(10000)}`
+  format: 'HH:MM:SS'
 }
 
 CountdownTimer.propTypes = {
