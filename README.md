@@ -41,6 +41,7 @@ import CountdownTimer from '@sakit-sa/countdown-timer';
 Name | Type | Default | Description
 -----|------|-------|-----
 **id**|`string`|`countdown-timer-[random-number]`|The unique identifier for the component.
+**className**|`object`|`{}`|Apply a className to the control
 **time**|`number`|`required`|The value of the timer base on second.
 **format**|`string`|`HH:MM:SS`|Formats a time value.
 **onComplete**|`function`|`-`|Trigger when timer is zero.
@@ -55,6 +56,12 @@ Token | Description
 **SS**|`Second` leading zero for single-digit second.
 **ss**|`Second` *no* leading zero for single-digit second.
 
+### className Token
+`wrapperClass` `symbolClass` `digitClass` `hourClass` `minuteClass` `secondClass` `hourWrapperClass` `minuteWrapperClass` `secondWrapperClass`
+
+See examples for more information (go to https://abdilar.github.io/countdown-timer/?path=/story/theme--class-name)
+
+
 ### License
 
-MIT © [Saeed Abdilar](https://github.com/Abdilar)
+MIT Licensed. © Copyright [Saeed Abdilar](https://github.com/Abdilar)
