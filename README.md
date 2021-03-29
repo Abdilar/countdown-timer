@@ -4,6 +4,10 @@
 
 [![NPM](https://img.shields.io/npm/v/@sakit-sa/countdown-timer.svg)](https://www.npmjs.com/package/@sakit-sa/countdown-timer) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
+## Countdown timer
+
+![Spinner gif](https://raw.githubusercontent.com/Abdilar/countdown-timer/master/src/asset/images/react-countdown-timer.gif)
+
 ## Live Playground
 For examples of the countdown-timer in action, go to https://abdilar.github.io/countdown-timer.
 
