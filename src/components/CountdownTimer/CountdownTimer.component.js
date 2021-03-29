@@ -48,12 +48,13 @@ const CountdownTimer = (props) => {
   };
 
   const initialTimer = () => {
-    const { hours, minutes, seconds } = getTime(props.time - 1);
+    const time = props.time > 0 ? props.time - 1 : 0;
+    const { hours, minutes, seconds } = getTime(time);
 
     setSeconds(seconds);
     setMinutes(minutes);
     setHours(hours);
-    start();
+    props.time && start();
   };
 
   const start = () => {
