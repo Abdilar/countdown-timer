@@ -32,7 +32,7 @@ import CountdownTimer from '@sakit-sa/countdown-timer';
 
 <CountdownTimer 
   time={90}
-  format="[hh]:[mm]:[ss]"
+  format="hh:mm:ss"
   onComplete={() => console.log("The timer completed")} 
 />
 ```
