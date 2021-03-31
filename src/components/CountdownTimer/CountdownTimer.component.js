@@ -170,3 +170,5 @@ CountdownTimer.propTypes = {
 }
 
 export default CountdownTimer;
+
+// TODO: Add play, pause props
